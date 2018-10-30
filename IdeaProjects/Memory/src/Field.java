@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.*;
 
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -20,7 +18,7 @@ class Field extends JFrame{
     private JButton start;
     private JButton check;
 
-    private JSpinner leveNumber;
+    private JSpinner levelNumber;
     private JSpinner speedNumber;
 
     private JComboBox textAnswer;
@@ -116,11 +114,11 @@ class Field extends JFrame{
         jsnm.setMinimum(1);
         jsnm.setMaximum(81);
         jsnm.setValue(1);
-        leveNumber = new JSpinner(jsnm);
+        levelNumber = new JSpinner(jsnm);
 
         JLabel level = new JLabel("Уровень: ");
         level.setBounds(10,20,300,20);
-        leveNumber.setBounds(70,20,35,20);
+        levelNumber.setBounds(70,20,35,20);
 
         JLabel speed = new JLabel("Скорость: ");
         speed.setBounds(120,20,300,20);
@@ -163,7 +161,7 @@ class Field extends JFrame{
         start.addActionListener(new ActionListener() {
             private void run() {
 
-                leveNumber.setEnabled(false);
+                levelNumber.setEnabled(false);
                 speedNumber.setEnabled(false);
                 textAnswer.setEnabled(false);
 
@@ -185,7 +183,7 @@ class Field extends JFrame{
 
                 int speedLevel = (int) ((double) speedNumber.getValue() * 1000);
 
-                for (int i = 1; i <= (int) leveNumber.getValue(); i++) {
+                for (int i = 1; i <= (int) levelNumber.getValue(); i++) {
 
                     roundCount++;
                     round.setText("Количество показов: " + roundCount);
@@ -569,20 +567,20 @@ class Field extends JFrame{
    pointsOne.setText("Количество совпадений в раунде: " + countNumberOne);
 
 
-   if(numDrop == (int)leveNumber.getValue()+1)
+   if(numDrop == (int) levelNumber.getValue()+1)
    {
        check.setEnabled(false);
        inAnswer.setText("Укажи картинку № " + (--numDrop));
        points.setText("Общее количество совпадений: " + countNumber);
        start.setEnabled(true);
-       leveNumber.setEnabled(true);
+       levelNumber.setEnabled(true);
        speedNumber.setEnabled(true);
    }
 
         }).start());
 
         info.add(level);
-        info.add(leveNumber);
+        info.add(levelNumber);
         info.add(speed);
         info.add(speedNumber);
         info.add(sec);
@@ -603,9 +601,9 @@ class Field extends JFrame{
         }
         drop[1].setEnabled(true);
 
-        leveNumber.addChangeListener(e -> {
+        levelNumber.addChangeListener(e -> {
 
-            int kol = (int)leveNumber.getValue();
+            int kol = (int) levelNumber.getValue();
 
             for(int i = kol+1; i < 82; i++) {
                 drop[i].setEnabled(false);
